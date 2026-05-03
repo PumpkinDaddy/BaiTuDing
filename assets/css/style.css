@@ -840,6 +840,11 @@ h3 {
   margin: 18px 0 24px;
 }
 
+.promo-display .promo-subtitle {
+  display: grid;
+  gap: 4px;
+}
+
 .promo-copy .button {
   box-shadow: 0 0 28px rgba(217, 155, 52, 0.34);
 }
@@ -861,46 +866,56 @@ h3 {
   }
 }
 
+.dj-stage,
 .dj-promo-section {
   isolation: isolate;
   overflow: hidden;
-  min-height: clamp(390px, 44vw, 560px);
+  min-height: clamp(430px, 45vw, 600px);
   place-items: center;
-  padding: clamp(24px, 5vw, 62px);
-  border: 1px solid rgba(255, 250, 240, 0.14);
+  padding: clamp(26px, 4vw, 58px);
+  border: 1px solid rgba(255, 250, 240, 0.16);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 18% 50%, rgba(217, 155, 52, 0.2), transparent 28%),
-    radial-gradient(circle at 82% 50%, rgba(217, 155, 52, 0.18), transparent 28%),
-    linear-gradient(135deg, #15100d, #050404 54%, #120c0b);
-  box-shadow: var(--shadow-cinematic), inset 0 0 0 1px rgba(217, 155, 52, 0.08);
+    radial-gradient(circle at 20% 50%, rgba(217, 155, 52, 0.18), transparent 25%),
+    radial-gradient(circle at 80% 50%, rgba(217, 155, 52, 0.16), transparent 25%),
+    linear-gradient(135deg, rgba(255, 250, 240, 0.08), transparent 18%, transparent 82%, rgba(255, 250, 240, 0.05)),
+    repeating-linear-gradient(100deg, rgba(255, 250, 240, 0.035) 0 1px, transparent 1px 9px),
+    linear-gradient(135deg, #1b1715, #070606 48%, #14100f);
+  box-shadow:
+    var(--shadow-cinematic),
+    inset 0 1px 0 rgba(255, 250, 240, 0.14),
+    inset 0 0 92px rgba(0, 0, 0, 0.74);
 }
 
-.dj-promo-section::before,
-.dj-promo-section::after {
+.dj-stage::before,
+.dj-stage::after {
   content: "";
   position: absolute;
   pointer-events: none;
 }
 
-.dj-promo-section::before {
+.dj-stage::before {
   inset: 12px;
   z-index: 0;
-  border: 1px solid rgba(255, 250, 240, 0.09);
+  border: 1px solid rgba(255, 250, 240, 0.1);
   border-radius: 8px;
   background:
-    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.05) 0 1px, transparent 1px 12px),
-    repeating-linear-gradient(0deg, rgba(255, 250, 240, 0.028) 0 1px, transparent 1px 16px);
-  opacity: 0.64;
+    linear-gradient(180deg, rgba(255, 250, 240, 0.11), transparent 12%, transparent 78%, rgba(0, 0, 0, 0.32)),
+    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.028) 0 1px, transparent 1px 15px);
+  box-shadow:
+    inset 0 0 0 1px rgba(217, 155, 52, 0.05),
+    inset 0 0 46px rgba(0, 0, 0, 0.58);
+  opacity: 0.9;
 }
 
-.dj-promo-section::after {
-  inset: auto 8% 20px;
-  z-index: 2;
+.dj-stage::after {
+  inset: auto 9% 20px;
+  z-index: 3;
   height: 8px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(217, 155, 52, 0.82), transparent);
+  background: linear-gradient(90deg, transparent, rgba(217, 155, 52, 0.86), transparent);
   filter: blur(10px);
+  opacity: 0.78;
 }
 
 .dj-turntable {
@@ -911,155 +926,374 @@ h3 {
   pointer-events: none;
 }
 
-.dj-turntable::before {
-  content: "";
+.dj-deck,
+.dj-mixer {
   position: absolute;
-  left: 50%;
   top: 50%;
-  width: min(42%, 420px);
-  height: min(72%, 360px);
   border: 1px solid rgba(255, 250, 240, 0.12);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, rgba(217, 155, 52, 0.18), transparent 28%, transparent 72%, rgba(217, 155, 52, 0.14)),
-    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.055) 0 1px, transparent 1px 10px),
-    rgba(7, 6, 5, 0.86);
-  box-shadow: inset 0 0 48px rgba(0, 0, 0, 0.8), 0 0 34px rgba(217, 155, 52, 0.12);
-  transform: translate(-50%, -50%);
+    linear-gradient(145deg, rgba(255, 250, 240, 0.1), transparent 24%, rgba(0, 0, 0, 0.34) 82%),
+    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.038) 0 1px, transparent 1px 12px),
+    #0a0908;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 240, 0.13),
+    inset 0 -24px 44px rgba(0, 0, 0, 0.62),
+    0 24px 62px rgba(0, 0, 0, 0.45);
+}
+
+.dj-deck {
+  width: clamp(240px, 30vw, 380px);
+  height: clamp(270px, 30vw, 390px);
+  transform: translateY(-50%);
+}
+
+.dj-deck-left {
+  left: clamp(-118px, -4vw, -24px);
+}
+
+.dj-deck-right {
+  right: clamp(-118px, -4vw, -24px);
 }
 
 .dj-platter {
   position: absolute;
-  top: 50%;
-  width: clamp(210px, 28vw, 380px);
+  left: 50%;
+  top: 45%;
+  width: min(78%, 310px);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, var(--gold) 0 5%, var(--rust) 5% 10%, #060505 10% 17%, transparent 17%),
-    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.14) 0 1px, transparent 1px 9px),
-    conic-gradient(from 18deg, #040404, #2b2521 14%, #050505 28%, #4c4138 44%, #050505 60%, #302820 78%, #040404);
-  border: 2px solid rgba(217, 155, 52, 0.44);
+    radial-gradient(circle, #d99b34 0 4%, #6f2f23 4.2% 8%, #060505 8.2% 14%, transparent 14.2%),
+    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.2) 0 1px, transparent 1px 8px),
+    repeating-radial-gradient(circle, transparent 0 18px, rgba(217, 155, 52, 0.08) 19px 20px, transparent 21px 28px),
+    conic-gradient(from 18deg, #030303, #302a26 13%, #050505 27%, #50463d 42%, #050505 58%, #2b2420 78%, #030303);
+  border: 2px solid rgba(217, 155, 52, 0.48);
   box-shadow:
-    inset 0 0 42px rgba(0, 0, 0, 0.82),
-    0 0 42px rgba(217, 155, 52, 0.22);
-  opacity: 0.9;
-  animation: dj-spin 12s linear infinite;
+    inset 0 0 0 12px rgba(0, 0, 0, 0.22),
+    inset 0 0 54px rgba(0, 0, 0, 0.86),
+    0 0 0 12px rgba(255, 250, 240, 0.025),
+    0 22px 46px rgba(0, 0, 0, 0.55),
+    0 0 34px rgba(217, 155, 52, 0.2);
+  transform: translate(-50%, -50%);
+  animation: dj-spin 14s linear infinite;
+}
+
+.dj-platter::before,
+.dj-platter::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .dj-platter::before {
+  inset: -16px;
+  border: 1px solid rgba(217, 155, 52, 0.22);
+  box-shadow: inset 0 0 20px rgba(217, 155, 52, 0.08);
+}
+
+.dj-platter::after {
+  inset: 35%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 250, 240, 0.58) 0 12%, transparent 13%),
+    linear-gradient(145deg, rgba(217, 155, 52, 0.9), rgba(155, 63, 45, 0.72));
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.24), 0 0 22px rgba(217, 155, 52, 0.18);
+}
+
+.dj-tonearm {
+  position: absolute;
+  right: 11%;
+  top: 15%;
+  width: 34%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 250, 240, 0.86), rgba(217, 155, 52, 0.58));
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.42);
+  transform: rotate(32deg);
+  transform-origin: 86% 50%;
+}
+
+.dj-tonearm::before,
+.dj-tonearm::after {
   content: "";
   position: absolute;
-  inset: -18px;
-  border: 1px solid rgba(217, 155, 52, 0.24);
-  border-radius: inherit;
 }
 
-.dj-platter-left {
-  left: clamp(-100px, -6vw, -34px);
-  transform: translateY(-50%);
+.dj-tonearm::before {
+  right: -16px;
+  top: -13px;
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(255, 250, 240, 0.22);
+  border-radius: 50%;
+  background: #0f0d0c;
 }
 
-.dj-platter-right {
-  right: clamp(-100px, -6vw, -34px);
-  transform: translateY(-50%);
+.dj-tonearm::after {
+  left: -7px;
+  top: 7px;
+  width: 18px;
+  height: 18px;
+  border-radius: 0 0 4px 4px;
+  background: var(--rust);
+  transform: rotate(18deg);
 }
 
-.mixer-panel {
+.dj-deck-fader {
   position: absolute;
+  left: 10%;
+  bottom: 14%;
+  width: 34%;
+  height: 8px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 64% 50%, rgba(255, 250, 240, 0.85) 0 7px, transparent 8px),
+    rgba(255, 250, 240, 0.11);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.66), 0 0 12px rgba(217, 155, 52, 0.16);
+}
+
+.dj-led {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(217, 155, 52, 0.94);
+  box-shadow:
+    0 0 0 1px rgba(255, 250, 240, 0.16),
+    0 0 18px rgba(217, 155, 52, 0.5);
+  animation: dj-led-blink 2.4s ease-in-out infinite;
+}
+
+.dj-led-cue,
+.dj-led-play {
+  position: absolute;
+  bottom: 13%;
+}
+
+.dj-led-cue {
+  right: 18%;
+  background: rgba(255, 250, 240, 0.72);
+  animation-delay: 420ms;
+}
+
+.dj-led-play {
+  right: 11%;
+}
+
+.dj-mixer {
   left: 50%;
-  top: 50%;
-  width: min(18%, 160px);
-  height: min(64%, 330px);
+  z-index: 2;
+  width: min(64%, 760px);
+  height: min(82%, 460px);
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(217, 155, 52, 0.13), transparent 30%),
+    linear-gradient(90deg, rgba(217, 155, 52, 0.16), transparent 18%, transparent 82%, rgba(217, 155, 52, 0.13)),
+    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.045) 0 1px, transparent 1px 12px),
+    linear-gradient(180deg, #181412, #080706 62%, #120e0d);
+}
+
+.dj-mixer::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 250, 240, 0.08);
   border-radius: 8px;
   background:
-    radial-gradient(circle at 50% 16%, var(--gold) 0 5px, transparent 6px),
-    radial-gradient(circle at 50% 34%, rgba(255, 250, 240, 0.78) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 52%, var(--rust) 0 5px, transparent 6px),
-    linear-gradient(180deg, rgba(255, 250, 240, 0.1), rgba(255, 250, 240, 0.03)),
-    rgba(8, 7, 6, 0.92);
-  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.68);
-  transform: translate(-50%, -50%);
+    linear-gradient(180deg, rgba(255, 250, 240, 0.08), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.34));
+  pointer-events: none;
 }
 
-.dj-controls {
+.dj-knob-bank {
+  position: absolute;
+  top: clamp(24px, 5vw, 42px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px 16px;
+}
+
+.dj-knob-bank-left {
+  left: clamp(18px, 4vw, 38px);
+}
+
+.dj-knob-bank-right {
+  right: clamp(18px, 4vw, 38px);
+}
+
+.dj-knob {
+  width: 24px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    linear-gradient(28deg, transparent 0 46%, rgba(217, 155, 52, 0.82) 47% 54%, transparent 55%),
+    radial-gradient(circle at 35% 28%, rgba(255, 250, 240, 0.42), transparent 0 24%),
+    linear-gradient(145deg, #494039, #11100f 68%);
+  border: 1px solid rgba(255, 250, 240, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 240, 0.22),
+    inset 0 -8px 12px rgba(0, 0, 0, 0.58),
+    0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.dj-fader-bank {
   position: absolute;
   left: 50%;
-  bottom: clamp(38px, 8vw, 88px);
+  bottom: clamp(62px, 9vw, 92px);
   display: flex;
-  gap: 12px;
+  gap: clamp(14px, 2.2vw, 24px);
   transform: translateX(-50%);
 }
 
-.dj-controls span {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: var(--glow-gold);
+.dj-fader {
+  position: relative;
+  display: block;
+  width: 8px;
+  height: clamp(54px, 8vw, 82px);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(217, 155, 52, 0.22), transparent 34%, rgba(255, 250, 240, 0.14)),
+    rgba(255, 250, 240, 0.1);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.72);
+}
+
+.dj-fader::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 26px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 250, 240, 0.82), rgba(103, 90, 78, 0.82));
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.46);
+  transform: translate(-50%, -50%);
+}
+
+.dj-fader:nth-child(2)::after {
+  top: 30%;
+}
+
+.dj-fader:nth-child(3)::after {
+  top: 58%;
+}
+
+.dj-led-grid {
+  position: absolute;
+  right: clamp(20px, 4vw, 42px);
+  bottom: clamp(28px, 5vw, 46px);
+  display: grid;
+  grid-template-columns: repeat(4, 12px);
+  gap: 8px;
+}
+
+.dj-led-grid .dj-led:nth-child(2n) {
+  animation-delay: 560ms;
+}
+
+.dj-led-grid .dj-led:nth-child(3n) {
+  background: rgba(155, 63, 45, 0.92);
+  animation-delay: 960ms;
 }
 
 .dj-crossfader {
   position: absolute;
   left: 50%;
-  bottom: clamp(22px, 5vw, 48px);
-  width: min(42%, 420px);
+  bottom: clamp(28px, 5vw, 46px);
+  width: min(42%, 260px);
   height: 8px;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 58% 50%, var(--gold) 0 7px, transparent 8px),
+    radial-gradient(circle at 61% 50%, rgba(255, 250, 240, 0.88) 0 8px, transparent 9px),
     rgba(255, 250, 240, 0.12);
-  box-shadow: 0 0 18px rgba(217, 155, 52, 0.2);
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.68),
+    0 0 18px rgba(217, 155, 52, 0.22);
   transform: translateX(-50%);
 }
 
 .waveform-lines {
   position: absolute;
   left: 50%;
-  top: clamp(28px, 5vw, 58px);
-  width: min(52%, 520px);
-  height: 46px;
+  top: clamp(24px, 4vw, 40px);
+  width: min(36%, 240px);
+  height: 42px;
+  border-radius: 8px;
   background:
-    linear-gradient(90deg, transparent, rgba(217, 155, 52, 0.72), transparent) center / 100% 2px no-repeat,
-    repeating-linear-gradient(90deg, transparent 0 10px, rgba(217, 155, 52, 0.62) 10px 12px, transparent 12px 20px);
-  opacity: 0.5;
+    linear-gradient(90deg, transparent, rgba(217, 155, 52, 0.74), transparent) center / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(217, 155, 52, 0.68) 8px 10px, transparent 10px 17px),
+    rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.56), 0 0 20px rgba(217, 155, 52, 0.14);
+  opacity: 0.62;
   transform: translateX(-50%);
 }
 
+.promo-display,
 .mixer-copy {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   display: grid;
   justify-items: center;
-  width: min(720px, 100%);
-  padding: clamp(22px, 4vw, 44px);
+  width: min(520px, calc(100% - 180px));
+  padding: clamp(20px, 3.2vw, 36px);
   text-align: center;
-  border: 1px solid rgba(255, 250, 240, 0.14);
+  border: 1px solid rgba(217, 155, 52, 0.34);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 250, 240, 0.11), rgba(255, 250, 240, 0.035)),
-    rgba(5, 4, 4, 0.78);
+    linear-gradient(180deg, rgba(255, 250, 240, 0.1), rgba(255, 250, 240, 0.02)),
+    radial-gradient(circle at 50% 8%, rgba(217, 155, 52, 0.18), transparent 36%),
+    rgba(4, 5, 5, 0.88);
   box-shadow:
-    0 24px 72px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(217, 155, 52, 0.08),
-    var(--glow-gold);
+    0 24px 70px rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 250, 240, 0.16),
+    inset 0 0 38px rgba(217, 155, 52, 0.08),
+    0 0 36px rgba(217, 155, 52, 0.22);
   backdrop-filter: blur(5px);
 }
 
+.promo-display::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  z-index: 0;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(0deg, rgba(217, 155, 52, 0.08) 0 1px, transparent 1px 8px),
+    linear-gradient(180deg, rgba(17, 100, 102, 0.12), transparent 48%);
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.promo-display > * {
+  position: relative;
+  z-index: 1;
+}
+
 .promo-label {
-  margin: 0 0 10px;
-  color: rgba(255, 250, 240, 0.78);
+  margin: 0 0 9px;
+  color: rgba(217, 155, 52, 0.88);
   font-size: 13px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
+.promo-display .button,
 .mixer-copy .button {
   box-shadow: 0 0 28px rgba(217, 155, 52, 0.34);
 }
 
 @keyframes dj-spin {
   to {
-    transform: translateY(-50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes dj-led-blink {
+  50% {
+    opacity: 0.38;
+    box-shadow:
+      0 0 0 1px rgba(255, 250, 240, 0.12),
+      0 0 8px rgba(217, 155, 52, 0.18);
   }
 }
 
@@ -1071,11 +1305,16 @@ h3 {
 }
 
 #menus {
+  padding-block: clamp(42px, 6vw, 78px);
   color: var(--white);
   background:
     radial-gradient(circle at 16% 14%, rgba(217, 155, 52, 0.2), transparent 30%),
     radial-gradient(circle at 86% 32%, rgba(155, 63, 45, 0.24), transparent 28%),
     linear-gradient(180deg, #080706, #15100d 52%, #090807);
+}
+
+#menus .section-heading {
+  margin-bottom: 18px;
 }
 
 #menus .section-heading h2 {
@@ -1087,7 +1326,7 @@ h3 {
   display: flex;
   gap: 10px;
   max-width: 1180px;
-  margin: 0 auto 22px;
+  margin: 0 auto 16px;
 }
 
 .tab {
@@ -1460,10 +1699,10 @@ h3 {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(360px, 0.9fr) minmax(320px, 1fr);
-  gap: clamp(16px, 2.6vw, 34px);
+  grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 24px);
   align-items: stretch;
-  padding: clamp(14px, 2.4vw, 28px);
+  padding: clamp(12px, 2vw, 22px);
   border: 1px solid rgba(255, 250, 240, 0.14);
   border-radius: 8px;
   background:
@@ -1494,15 +1733,16 @@ h3 {
 .album-cover {
   isolation: isolate;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 12px;
-  min-height: clamp(420px, 42vw, 560px);
-  padding: clamp(12px, 2vw, 18px);
+  grid-template-rows: auto auto;
+  gap: 10px;
+  align-content: start;
+  min-height: 0;
+  padding: clamp(10px, 1.5vw, 14px);
   border-radius: 8px;
   background:
     linear-gradient(145deg, rgba(255, 250, 240, 0.11), rgba(255, 250, 240, 0.025)),
     #0b0908;
-  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.12), 0 28px 76px rgba(0, 0, 0, 0.38);
+  box-shadow: inset 0 0 0 1px rgba(255, 250, 240, 0.12), 0 18px 46px rgba(0, 0, 0, 0.32);
   perspective: 1000px;
 }
 
@@ -1511,10 +1751,12 @@ h3 {
   z-index: 2;
   overflow: hidden;
   min-height: 0;
+  aspect-ratio: 4 / 3;
+  max-height: 320px;
   border-radius: 8px;
   background: #080706;
-  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.42);
-  transform-origin: left center;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.36);
+  transform-origin: center;
 }
 
 .album-cover-art::after {
@@ -1530,39 +1772,18 @@ h3 {
 .album-cover-art img {
   width: 100%;
   height: 100%;
-  min-height: 290px;
+  min-height: 0;
   object-fit: cover;
   filter: saturate(1.08) contrast(1.05);
-}
-
-.record-disc {
-  position: absolute;
-  z-index: 1;
-  top: 40%;
-  right: -18%;
-  width: min(62%, 280px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, var(--gold) 0 6%, var(--rust) 6% 12%, #060505 12% 18%, transparent 18%),
-    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.14) 0 1px, transparent 1px 8px),
-    conic-gradient(from 20deg, #050505, #302923 16%, #050505 32%, #4c4138 48%, #050505 64%, #28211e 82%, #050505);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 240, 0.18),
-    inset 0 0 32px rgba(0, 0, 0, 0.75),
-    0 18px 42px rgba(0, 0, 0, 0.5),
-    0 0 26px rgba(217, 155, 52, 0.18);
-  transform: translateY(-50%);
-  transition: right 320ms ease, filter 320ms ease;
-  animation: album-record-spin 11s linear infinite;
+  transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
 }
 
 .selected-drink-panel {
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 8px;
-  padding: clamp(14px, 2vw, 20px);
+  gap: 7px;
+  padding: clamp(12px, 1.6vw, 16px);
   border-left: 2px solid rgba(217, 155, 52, 0.72);
   border-radius: 8px;
   background:
@@ -1574,8 +1795,8 @@ h3 {
 .selected-drink-panel h3 {
   margin: 0;
   color: var(--white);
-  font-size: clamp(26px, 3.5vw, 46px);
-  line-height: 1;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.05;
 }
 
 .selected-drink-panel .bilingual-text {
@@ -1598,36 +1819,86 @@ h3 {
 }
 
 .album-tracklist {
+  --record-size: clamp(390px, 58vw, 690px);
+  --record-x: calc(100% - clamp(96px, 17vw, 180px));
+  --record-y: 52%;
   display: grid;
-  gap: 8px;
-  align-content: center;
-  padding: clamp(16px, 2.8vw, 30px);
+  overflow: hidden;
+  gap: 4px;
+  align-content: start;
+  min-height: 100%;
+  padding: clamp(14px, 2vw, 22px) clamp(16px, 2.4vw, 26px);
   border: 1px solid rgba(255, 250, 240, 0.14);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 250, 240, 0.08), rgba(255, 250, 240, 0.035)),
-    repeating-linear-gradient(0deg, transparent 0 55px, rgba(255, 250, 240, 0.07) 55px 56px),
+    linear-gradient(180deg, rgba(255, 250, 240, 0.075), rgba(255, 250, 240, 0.024)),
+    repeating-linear-gradient(0deg, rgba(255, 250, 240, 0.055) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(90deg, rgba(255, 250, 240, 0.032) 0 1px, transparent 1px 18px),
     #0b0908;
   box-shadow: inset 0 0 0 1px rgba(217, 155, 52, 0.06), 0 26px 70px rgba(0, 0, 0, 0.3);
 }
 
 .album-tracklist::before {
-  content: "BACKTO INN";
-  color: rgba(255, 250, 240, 0.12);
-  font-size: clamp(36px, 5vw, 72px);
+  content: "";
+  position: absolute;
+  left: var(--record-x);
+  top: var(--record-y);
+  z-index: 0;
+  width: var(--record-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 0 10%, rgba(255, 250, 240, 0.06) 10.2% 10.8%, transparent 11%),
+    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.18) 0 1px, transparent 1px 7px),
+    repeating-radial-gradient(circle, transparent 0 22px, rgba(217, 155, 52, 0.07) 23px 24px, transparent 25px 34px),
+    conic-gradient(from 24deg, #020202, #322b26 12%, #050504 24%, #4c4138 38%, #040404 52%, #28221f 70%, #070606 86%, #020202);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 250, 240, 0.2),
+    inset 0 0 72px rgba(0, 0, 0, 0.86),
+    0 0 64px rgba(217, 155, 52, 0.16);
+  opacity: 0.48;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  pointer-events: none;
+}
+
+.album-tracklist::after {
+  content: "白兔町 BACKTO INN";
+  position: absolute;
+  left: var(--record-x);
+  top: var(--record-y);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: clamp(78px, 11vw, 118px);
+  aspect-ratio: 1;
+  padding: 12px;
+  color: rgba(18, 15, 18, 0.72);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 250, 240, 0.7) 0 12%, transparent 13%),
+    linear-gradient(145deg, rgba(217, 155, 52, 0.88), rgba(155, 63, 45, 0.76));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 250, 240, 0.34),
+    0 0 34px rgba(217, 155, 52, 0.2);
+  font-size: 9px;
   font-weight: 900;
-  line-height: 0.82;
+  line-height: 1.05;
+  text-align: center;
+  opacity: 0.58;
+  transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
 .album-track {
   appearance: none;
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: 38px minmax(0, 1fr) auto;
-  gap: 12px;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 10px;
   align-items: center;
-  min-height: 54px;
-  padding: 10px 0;
+  min-height: 46px;
+  padding: 8px 0;
   color: var(--white);
   border: 0;
   border-bottom: 1px solid rgba(255, 250, 240, 0.12);
@@ -1635,7 +1906,7 @@ h3 {
   cursor: pointer;
   font: inherit;
   text-align: left;
-  transition: color 240ms ease, text-shadow 240ms ease, transform 240ms ease;
+  transition: color 220ms ease, text-shadow 220ms ease, transform 220ms ease, background-color 220ms ease;
 }
 
 .album-track-number {
@@ -1643,19 +1914,23 @@ h3 {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px;
   font-weight: 900;
+  transition: color 220ms ease;
 }
 
 .album-track-name {
   color: rgba(255, 250, 240, 0.84);
-  font-size: clamp(17px, 1.5vw, 23px);
+  min-width: 0;
+  font-size: clamp(16px, 1.25vw, 20px);
   font-weight: 850;
   line-height: 1.1;
+  transition: color 220ms ease;
 }
 
 .album-track-price {
   color: var(--gold);
   font-size: 18px;
   font-weight: 900;
+  transition: color 220ms ease;
 }
 
 .album-track:hover,
@@ -1665,7 +1940,8 @@ h3 {
   color: var(--gold);
   outline: none;
   text-shadow: var(--glow-gold);
-  transform: translateX(6px);
+  background: linear-gradient(90deg, rgba(217, 155, 52, 0.12), transparent 68%);
+  transform: translateX(3px);
 }
 
 .album-track.active .album-track-number,
@@ -1673,35 +1949,68 @@ h3 {
   color: var(--gold);
 }
 
+.album-track:hover .album-track-name,
+.album-track:focus-visible .album-track-name {
+  color: var(--white);
+}
+
+.album-track.active .album-track-name,
+.album-track.is-playing .album-track-name {
+  color: var(--gold);
+}
+
 .album-menu-shell.is-switching .album-cover-art {
   animation: album-cover-pull 420ms ease;
 }
 
-.album-menu-shell.is-switching .record-disc {
-  right: -11%;
-  filter: drop-shadow(0 0 18px rgba(217, 155, 52, 0.42));
+.album-menu-shell.is-switching .album-tracklist::before {
+  animation: album-record-change 460ms ease;
+}
+
+.album-menu-shell.is-switching .album-tracklist::after {
+  animation: album-label-pulse 460ms ease;
 }
 
 .album-menu-shell.is-switching [data-player-photo] {
   animation: album-photo-swap 360ms ease;
 }
 
-@keyframes album-record-spin {
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
-}
-
 @keyframes album-cover-pull {
   45% {
-    transform: rotateY(-7deg) translateX(8px);
+    transform: scale(0.985);
   }
 }
 
 @keyframes album-photo-swap {
-  45% {
-    opacity: 0.62;
+  from {
+    opacity: 0.24;
     transform: scale(1.018);
+  }
+
+  45% {
+    opacity: 0.72;
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes album-record-change {
+  45% {
+    filter: drop-shadow(0 0 22px rgba(217, 155, 52, 0.32));
+    transform: translate(-50%, -50%) rotate(8deg) scale(1.012);
+  }
+}
+
+@keyframes album-label-pulse {
+  45% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 250, 240, 0.48),
+      0 0 42px rgba(217, 155, 52, 0.34);
+    opacity: 0.74;
+    transform: translate(-50%, -50%) scale(1.08);
   }
 }
 
@@ -1928,13 +2237,44 @@ h3 {
   }
 
   .dj-promo-section {
-    min-height: 460px;
+    min-height: 480px;
     padding: 24px;
   }
 
+  .dj-deck {
+    width: clamp(220px, 36vw, 300px);
+    height: clamp(250px, 36vw, 320px);
+    opacity: 0.72;
+  }
+
+  .dj-deck-left {
+    left: -92px;
+  }
+
+  .dj-deck-right {
+    right: -92px;
+  }
+
   .dj-platter {
-    width: clamp(190px, 34vw, 270px);
-    opacity: 0.62;
+    width: min(76%, 240px);
+  }
+
+  .dj-mixer {
+    width: min(84%, 680px);
+    height: 80%;
+  }
+
+  .dj-knob {
+    width: 20px;
+  }
+
+  .dj-knob-bank {
+    gap: 10px 12px;
+  }
+
+  .promo-display,
+  .mixer-copy {
+    width: min(520px, calc(100% - 72px));
   }
 
   .mixer-copy {
@@ -1956,23 +2296,34 @@ h3 {
   }
 
   .album-cover {
-    grid-template-columns: minmax(200px, 0.75fr) minmax(0, 1fr);
+    grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
     grid-template-rows: auto;
-    gap: 14px;
+    align-items: stretch;
+    gap: 12px;
     min-height: auto;
   }
 
   .album-cover-art {
-    min-height: 260px;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 4 / 3;
   }
 
   .album-cover-art img {
-    min-height: 260px;
+    min-height: 0;
   }
 
   .selected-drink-panel {
     align-self: stretch;
     align-content: center;
+  }
+
+  .album-tracklist {
+    --record-size: clamp(360px, 82vw, 620px);
+    --record-x: 74%;
+    --record-y: 54%;
+    min-height: clamp(230px, 38vw, 320px);
   }
 
   .player-console {
@@ -2029,6 +2380,14 @@ h3 {
 }
 
 @media (max-width: 520px) {
+  #menus {
+    padding-block: 34px;
+  }
+
+  #menus .section-heading {
+    margin-bottom: 14px;
+  }
+
   .brand {
     width: 216px;
   }
@@ -2128,34 +2487,79 @@ h3 {
     padding: 16px;
   }
 
-  .dj-promo-section::before {
+  .dj-stage::before {
     inset: 8px;
   }
 
+  .dj-stage::after {
+    inset-inline: 18%;
+    bottom: 14px;
+  }
+
+  .dj-deck {
+    top: 52%;
+    width: 250px;
+    height: 250px;
+    opacity: 0.44;
+  }
+
+  .dj-deck-left {
+    left: -138px;
+  }
+
+  .dj-deck-right {
+    right: -138px;
+  }
+
   .dj-platter {
-    width: 210px;
-    opacity: 0.38;
+    top: 48%;
+    width: 76%;
   }
 
-  .dj-platter-left {
-    left: -118px;
+  .dj-tonearm,
+  .dj-deck-fader,
+  .dj-led-cue,
+  .dj-led-play {
+    opacity: 0.42;
   }
 
-  .dj-platter-right {
-    right: -118px;
+  .dj-mixer {
+    width: calc(100% - 24px);
+    height: 78%;
+    opacity: 0.9;
   }
 
-  .mixer-panel {
-    width: 34%;
-    height: 74%;
-    opacity: 0.62;
+  .dj-knob-bank,
+  .dj-fader-bank {
+    display: none;
+  }
+
+  .dj-led-grid {
+    right: 18px;
+    bottom: 24px;
+    grid-template-columns: repeat(4, 9px);
+    gap: 6px;
+  }
+
+  .dj-led {
+    width: 9px;
+    height: 9px;
+  }
+
+  .dj-crossfader {
+    bottom: 24px;
+    width: 48%;
   }
 
   .waveform-lines {
-    width: 72%;
+    top: 22px;
+    width: 44%;
+    height: 32px;
   }
 
+  .promo-display,
   .mixer-copy {
+    width: calc(100% - 32px);
     padding: 18px 14px;
   }
 
@@ -2164,56 +2568,87 @@ h3 {
   }
 
   .album-menu-shell {
-    gap: 12px;
-    padding: 10px;
+    gap: 10px;
+    padding: 8px;
   }
 
   .album-cover {
-    grid-template-columns: 1fr;
+    grid-template-columns: clamp(96px, 32vw, 132px) minmax(0, 1fr);
+    grid-template-rows: auto;
+    align-items: center;
     gap: 10px;
-    padding: 10px;
+    padding: 8px;
   }
 
   .album-cover-art {
+    width: clamp(96px, 32vw, 132px);
+    height: clamp(96px, 32vw, 132px);
     min-height: 0;
-    height: 210px;
+    max-height: none;
+    aspect-ratio: 1;
   }
 
   .album-cover-art img {
-    min-height: 210px;
-  }
-
-  .record-disc {
-    top: 108px;
-    right: -72px;
-    width: 178px;
-    opacity: 0.82;
+    min-height: 0;
   }
 
   .selected-drink-panel {
-    padding: 12px;
+    gap: 5px;
+    padding: 4px 0 4px 10px;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
   }
 
   .selected-drink-panel h3 {
-    font-size: clamp(25px, 8vw, 34px);
+    font-size: clamp(17px, 5vw, 22px);
+  }
+
+  .selected-drink-panel .bilingual-text {
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .selected-price {
+    padding: 4px 9px;
+    font-size: 13px;
   }
 
   .album-tracklist {
-    gap: 4px;
-    padding: 12px;
+    --record-size: 360px;
+    --record-x: 72%;
+    --record-y: 56%;
+    gap: 2px;
+    min-height: 0;
+    padding: 10px 12px;
   }
 
   .album-tracklist::before {
-    font-size: 30px;
+    opacity: 0.42;
+  }
+
+  .album-tracklist::after {
+    width: 76px;
+    font-size: 8px;
+    opacity: 0.52;
   }
 
   .album-track {
-    grid-template-columns: 30px minmax(0, 1fr) auto;
-    min-height: 48px;
-    gap: 9px;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    min-height: 44px;
+    gap: 8px;
+    padding: 6px 0;
+  }
+
+  .album-track-number {
+    font-size: 12px;
   }
 
   .album-track-name {
+    font-size: 15px;
+  }
+
+  .album-track-price {
     font-size: 16px;
   }
 
@@ -2379,10 +2814,13 @@ h3 {
   .speaker,
   .soundwave,
   .dj-platter,
-  .record-disc,
+  .dj-led,
   .equalizer-bar,
+  .dj-eq span,
   .promo-eq span,
   .album-menu-shell.is-switching .album-cover-art,
+  .album-menu-shell.is-switching .album-tracklist::before,
+  .album-menu-shell.is-switching .album-tracklist::after,
   .album-menu-shell.is-switching [data-player-photo],
   .event-modal-panel {
     animation: none !important;

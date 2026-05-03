@@ -81,24 +81,59 @@
         <p class="eyebrow">优惠 Promotions</p>
         <h2 id="promotions-title">本周优惠 Weekly Promos</h2>
       </div>
-      <div class="promo-layout dj-promo-section">
+      <div class="promo-layout dj-promo-section dj-stage">
         <div class="dj-turntable" aria-hidden="true">
-          <span class="dj-platter dj-platter-left"></span>
-          <span class="dj-platter dj-platter-right"></span>
-          <span class="mixer-panel"></span>
-          <span class="waveform-lines"></span>
-          <span class="dj-crossfader"></span>
-          <span class="dj-controls">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
+          <div class="dj-deck dj-deck-left">
+            <span class="dj-platter"></span>
+            <span class="dj-tonearm"></span>
+            <span class="dj-deck-fader"></span>
+            <span class="dj-led dj-led-cue"></span>
+            <span class="dj-led dj-led-play"></span>
+          </div>
+          <div class="dj-mixer">
+            <span class="waveform-lines dj-eq"></span>
+            <span class="dj-knob-bank dj-knob-bank-left">
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+            </span>
+            <span class="dj-knob-bank dj-knob-bank-right">
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+              <span class="dj-knob"></span>
+            </span>
+            <span class="dj-fader-bank">
+              <span class="dj-fader"></span>
+              <span class="dj-fader"></span>
+              <span class="dj-fader"></span>
+              <span class="dj-fader"></span>
+            </span>
+            <span class="dj-led-grid">
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+              <span class="dj-led"></span>
+            </span>
+            <span class="dj-crossfader"></span>
+          </div>
+          <div class="dj-deck dj-deck-right">
+            <span class="dj-platter"></span>
+            <span class="dj-tonearm"></span>
+            <span class="dj-deck-fader"></span>
+            <span class="dj-led dj-led-cue"></span>
+            <span class="dj-led dj-led-play"></span>
+          </div>
         </div>
-        <div class="promo-copy mixer-copy">
+        <div class="promo-copy mixer-copy promo-display">
           <p class="promo-label">本周优惠 / Weekly Promos</p>
           <p class="tag">周日至周四 18:00-21:00 / Sun-Thu 18:00-21:00</p>
-          <div class="promo-eq equalizer-bars" aria-hidden="true">
+          <div class="promo-eq equalizer-bars dj-eq" aria-hidden="true">
             <span></span>
             <span></span>
             <span></span>
@@ -106,7 +141,10 @@
             <span></span>
           </div>
           <h3><span>第二杯半价 /</span><span>Second Drink Half Off</span></h3>
-          <p class="promo-subtitle">下班后的低频派对，把第一杯留给自己，第二杯留给朋友。After-work bass, warm lights, and a second drink for your friend.</p>
+          <p class="promo-subtitle">
+            <span>下班后的低频派对，把第一杯留给自己，第二杯留给朋友。</span>
+            <span>After-work bass, warm lights, and a second drink for your friend.</span>
+          </p>
           <a class="button primary" href="#menus">查看酒单 / View Drinks</a>
         </div>
       </div>
@@ -125,7 +163,6 @@
         <article class="menu-panel album-menu is-active" data-panel="drinks">
           <div class="album-menu-shell" data-menu-player>
             <div class="album-cover">
-              <span class="record-disc" aria-hidden="true"></span>
               <div class="album-cover-art">
                 <img src="assets/images/drink-1.JPG" alt="柚子金酒菲士饮品照片 / Yuzu Gin Fizz drink photo" data-player-photo>
               </div>
@@ -157,7 +194,6 @@
         <article class="menu-panel album-menu coffee-panel" data-panel="coffee" hidden>
           <div class="album-menu-shell coffee-album" data-menu-player>
             <div class="album-cover">
-              <span class="record-disc" aria-hidden="true"></span>
               <div class="album-cover-art">
                 <img src="assets/images/coffee-1.jpg" alt="脏咖啡照片 / Dirty coffee photo" data-player-photo>
               </div>
