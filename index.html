@@ -150,78 +150,10 @@
       </div>
     </section>
 
-    <section class="section" id="menus" aria-labelledby="menus-title">
-      <div class="section-heading">
-        <p class="eyebrow">菜单 Menus</p>
-        <h2 id="menus-title">喝点什么 What to Drink</h2>
-      </div>
-      <div class="menu-tabs" role="tablist" aria-label="菜单分类 Menu categories">
-        <button class="tab is-active" type="button" role="tab" aria-selected="true" data-menu="drinks">饮品 Drinks</button>
-        <button class="tab" type="button" role="tab" aria-selected="false" data-menu="coffee">咖啡 Coffee</button>
-      </div>
-      <div class="menu-panels">
-        <article class="menu-panel album-menu is-active" data-panel="drinks">
-          <div class="album-menu-shell" data-menu-player>
-            <div class="album-cover">
-              <div class="album-cover-art">
-                <img src="assets/images/drink-1.JPG" alt="柚子金酒菲士饮品照片 / Yuzu Gin Fizz drink photo" data-player-photo>
-              </div>
-              <div class="selected-drink-panel">
-                <h3 data-player-name>柚子金酒菲士 Yuzu Gin Fizz</h3>
-                <p class="bilingual-text" data-player-ingredients>柚子、金酒、气泡感。Yuzu, gin, and a bright sparkling finish.</p>
-                <p class="selected-price" data-player-price>68</p>
-              </div>
-            </div>
-            <div class="album-tracklist" aria-label="饮品列表 Drinks list">
-              <button class="playlist-track album-track active is-playing" type="button" data-image="assets/images/drink-1.JPG" data-name="柚子金酒菲士 Yuzu Gin Fizz" data-ingredients="柚子、金酒、气泡感。Yuzu, gin, and a bright sparkling finish." data-price="68">
-                <span class="album-track-number">01</span>
-                <span class="album-track-name">柚子金酒菲士 Yuzu Gin Fizz</span>
-                <span class="album-track-price">68</span>
-              </button>
-              <button class="playlist-track album-track" type="button" data-image="assets/images/drink-2.JPG" data-name="招牌海波 House Highball" data-ingredients="清爽、微甜、适合第一杯。Crisp, lightly sweet, and easy as a first drink." data-price="58">
-                <span class="album-track-number">02</span>
-                <span class="album-track-name">招牌海波 House Highball</span>
-                <span class="album-track-price">58</span>
-              </button>
-              <button class="playlist-track album-track" type="button" data-image="assets/images/drink-1.JPG" data-name="白兔零度可乐 Rabbit Cola Zero" data-ingredients="无酒精，可乐、香草、柠檬。Alcohol-free with cola, vanilla, and lemon." data-price="42">
-                <span class="album-track-number">03</span>
-                <span class="album-track-name">白兔零度可乐 Rabbit Cola Zero</span>
-                <span class="album-track-price">42</span>
-              </button>
-            </div>
-          </div>
-        </article>
-        <article class="menu-panel album-menu coffee-panel" data-panel="coffee" hidden>
-          <div class="album-menu-shell coffee-album" data-menu-player>
-            <div class="album-cover">
-              <div class="album-cover-art">
-                <img src="assets/images/coffee-1.jpg" alt="脏咖啡照片 / Dirty coffee photo" data-player-photo>
-              </div>
-              <div class="selected-drink-panel">
-                <h3 data-player-name>脏咖啡 Dirty</h3>
-                <p class="bilingual-text" data-player-ingredients>浓缩咖啡落入冰牛奶。Espresso poured into cold milk.</p>
-                <p class="selected-price" data-player-price>36</p>
-              </div>
-            </div>
-            <div class="album-tracklist coffee-playlist" aria-label="咖啡列表 Coffee list">
-              <button class="playlist-track album-track active is-playing" type="button" data-image="assets/images/coffee-1.jpg" data-name="脏咖啡 Dirty" data-ingredients="浓缩咖啡落入冰牛奶。Espresso poured into cold milk." data-price="36">
-                <span class="album-track-number">01</span>
-                <span class="album-track-name">脏咖啡 Dirty</span>
-                <span class="album-track-price">36</span>
-              </button>
-              <button class="playlist-track album-track" type="button" data-image="assets/images/coffee-2.jpg" data-name="黑糖拿铁 Brown Sugar Latte" data-ingredients="柔和甜感，适合慢慢喝。Soft sweetness, made for slow sipping." data-price="38">
-                <span class="album-track-number">02</span>
-                <span class="album-track-name">黑糖拿铁 Brown Sugar Latte</span>
-                <span class="album-track-price">38</span>
-              </button>
-              <button class="playlist-track album-track" type="button" data-image="assets/images/coffee-1.jpg" data-name="手冲咖啡 Hand Brew" data-ingredients="每日豆单，吧台推荐。Daily beans, recommended at the bar." data-price="48">
-                <span class="album-track-number">03</span>
-                <span class="album-track-name">手冲咖啡 Hand Brew</span>
-                <span class="album-track-price">48</span>
-              </button>
-            </div>
-          </div>
-        </article>
+    <section class="section" id="menus" aria-label="菜单 Menu">
+      <div class="flipbook-menu-grid" aria-label="菜单翻页册 Menu flipbook booklets">
+        <article class="menu-booklet" data-flipbook="drinks" aria-label="饮品菜单翻页册 Drinks menu booklet"></article>
+        <article class="menu-booklet" data-flipbook="coffee" aria-label="咖啡菜单翻页册 Coffee menu booklet"></article>
       </div>
     </section>
 
