@@ -123,10 +123,42 @@ if (heroImage) {
   localStorage.setItem("backtoInnHeroBackground", nextBackground);
 }
 
+const closeMobileMenu = () => {
+  if (!navToggle || !siteNav) {
+    return;
+  }
+
+  navToggle.setAttribute("aria-expanded", "false");
+  navToggle.setAttribute("aria-label", "Open navigation menu");
+  siteNav.classList.remove("is-open");
+};
+
+const openMobileMenu = () => {
+  if (!navToggle || !siteNav) {
+    return;
+  }
+
+  navToggle.setAttribute("aria-expanded", "true");
+  navToggle.setAttribute("aria-label", "Close navigation menu");
+  siteNav.classList.add("is-open");
+};
+
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
-    navToggle.setAttribute("aria-expanded", "false");
-    navToggle.setAttribute("aria-label", "打开导航 Open navigation");
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      closeMobileMenu();
+      return;
+    }
+
+    openMobileMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileMenu();
+    }
   });
 }
 
@@ -146,7 +178,10 @@ if (navLinks.length) {
   setActiveLink(currentHashLink);
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => setActiveLink(link));
+    link.addEventListener("click", () => {
+      setActiveLink(link);
+      closeMobileMenu();
+    });
   });
 
   if ("IntersectionObserver" in window) {
@@ -310,6 +345,8 @@ class FlipBookMenu {
     this.kicker = options.kicker;
     this.catalog = options.catalog;
     this.discCatalog = options.discCatalog || options.catalog;
+    this.coverImage = options.coverImage;
+    this.coverAlt = options.coverAlt || `${options.zhTitle} ${options.enTitle} cover`;
     this.items = options.items;
     this.currentPage = -1;
     this.paddedItemPages = this.items.length + (this.items.length % 2);
@@ -641,15 +678,9 @@ class FlipBookMenu {
         <section class="flipbook-page flipbook-closed-cover" aria-label="${escapeHTML(this.titleZh)} / ${escapeHTML(this.titleEn)} 小册封面 / booklet cover">
           <button class="flipbook-closed-cover-button" type="button" data-flip-action="open" aria-label="打开 ${escapeHTML(this.titleZh)} / ${escapeHTML(this.titleEn)} 小册 / Open booklet">
             <span class="closed-cover-placeholder">
-              <span class="booklet-label">白兔町 / BACKTO INN</span>
-              <span class="closed-cover-title">${renderBilingualText(this.titleZh, this.titleEn)}</span>
-              <span class="closed-cover-disc" aria-hidden="true"></span>
-              <span class="closed-cover-meta">${escapeHTML(this.catalog)}</span>
+              ${this.coverImage ? `<img class="closed-cover-image" src="${escapeHTML(this.coverImage)}" alt="${escapeHTML(this.coverAlt)}">` : ""}
             </span>
-            <span class="closed-cover-footer">
-              <span>${escapeHTML(this.catalog)}</span>
-              <span>点击打开 / Tap to open</span>
-            </span>
+            <span class="closed-cover-open-label">点击打开 / TAP TO OPEN</span>
           </button>
         </section>
       </div>
@@ -750,7 +781,7 @@ class FlipBookMenu {
 
     return `
       <section class="flipbook-page ${positionClass} flipbook-menu-item-page" aria-label="${escapeHTML(getItemName(item))} 详情 / details">
-        <p class="booklet-label">菜单第 ${padPageNumber(pageNumber)} 页 / Menu Page ${padPageNumber(pageNumber)}</p>
+        <p class="booklet-label">酒水第 ${padPageNumber(pageNumber)} 页 / Drinks Page ${padPageNumber(pageNumber)}</p>
         <figure class="menu-page-photo">
           <img src="${escapeHTML(item.image)}" alt="${escapeHTML(getItemName(item))} 照片 / photo">
         </figure>
@@ -773,7 +804,7 @@ class FlipBookMenu {
   renderClosingPage(pageNumber, positionClass) {
     return `
       <section class="flipbook-page ${positionClass} flipbook-closing-page" aria-label="内页结束 / End of booklet">
-        <p class="booklet-label">菜单第 ${padPageNumber(pageNumber)} 页 / Menu Page ${padPageNumber(pageNumber)}</p>
+        <p class="booklet-label">酒水第 ${padPageNumber(pageNumber)} 页 / Drinks Page ${padPageNumber(pageNumber)}</p>
         <div>
           <h4>${renderBilingualText("内页结束", "End of Booklet")}</h4>
           <p>白兔町 BACKTO INN</p>
@@ -830,6 +861,8 @@ function DrinksFlipBook(root, menuData) {
     subtitleEn: "A liner-note pour list for low lights, warm records, and a second round.",
     kicker: "酒单 / Drinking Menu",
     catalog: "BTI-D-01",
+    coverImage: "assets/images/cocktail-cover.png",
+    coverAlt: "酒单 Drinking Menu cover",
     items: menuData,
   });
 }
@@ -843,6 +876,8 @@ function CoffeeFlipBook(root, menuData) {
     subtitleEn: "Espresso, milk, and slow afternoon notes pressed into a small paper booklet.",
     kicker: "咖啡单 / Coffee Menu",
     catalog: "BTI-C-01",
+    coverImage: "assets/images/coffee-cover.png",
+    coverAlt: "咖啡单 Coffee Menu cover",
     items: menuData,
   });
 }

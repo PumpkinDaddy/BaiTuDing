@@ -12,14 +12,15 @@
     <a class="brand" href="#top" aria-label="白兔町 BACKTO INN 首页 Home">
       <img src="assets/images/logo-transparent.webp" alt="">
     </a>
-    <button class="nav-toggle" type="button" aria-label="打开导航 Open navigation" aria-expanded="false">
-      <span></span>
-      <span></span>
+    <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-sleeve" aria-hidden="true">
+        <span class="nav-toggle-record"></span>
+      </span>
     </button>
-    <nav class="site-nav" aria-label="主导航 Main navigation">
+    <nav class="site-nav" id="site-nav" aria-label="主导航 Main navigation">
       <a href="#events">活动 Events</a>
       <a href="#promotions">优惠 Promos</a>
-      <a href="#menus">菜单 Menu</a>
+      <a href="#menus">酒水 Drinks</a>
       <a href="#visit">到店 Visit</a>
     </nav>
   </header>
@@ -33,7 +34,7 @@
         <p class="eyebrow">黑胶 · 咖啡 · 小酒 Vinyl · Coffee · Drinks</p>
         <p>微光、暖唱片，和一个适合好好聊天的房间。Low lights, warm records, and a room made for good conversation.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#menus">查看菜单 Menu</a>
+          <a class="button primary" href="#menus">查看酒水 Drinks</a>
           <a class="button secondary" href="#events">近期活动 Events</a>
         </div>
       </div>
@@ -150,19 +151,22 @@
       </div>
     </section>
 
-    <section class="section" id="menus" aria-label="菜单 Menu">
-      <div class="flipbook-menu-grid" aria-label="菜单翻页册 Menu flipbook booklets">
-        <article class="menu-booklet" data-flipbook="drinks" aria-label="饮品菜单翻页册 Drinks menu booklet"></article>
-        <article class="menu-booklet" data-flipbook="coffee" aria-label="咖啡菜单翻页册 Coffee menu booklet"></article>
+    <section class="section" id="menus" aria-label="酒水 Drinks">
+      <div class="flipbook-menu-grid" aria-label="酒水翻页册 Drinks flipbook booklets">
+        <article class="menu-booklet" data-flipbook="drinks" aria-label="酒水翻页册 Drinks booklet"></article>
+        <article class="menu-booklet" data-flipbook="coffee" aria-label="咖啡酒水翻页册 Coffee drinks booklet"></article>
       </div>
     </section>
 
     <section class="visit section-band" id="visit" aria-labelledby="visit-title">
       <figure class="visit-photo">
-        <img src="assets/images/visit-guidance.png" alt="白兔町到店入口指引，沿发光路线进入并搭乘电梯到四楼 / BACKTO INN entrance guide showing the glowing route to the elevator for 4F">
+        <img src="assets/images/front-door.png" alt="到店 Visit front door">
       </figure>
       <div class="visit-copy">
-        <p class="eyebrow">到店 Visit</p>
+        <p class="eyebrow visit-label">
+          <span class="zh">到店</span>
+          <span class="en">Visit</span>
+        </p>
         <h2 id="visit-title">四楼见 See You on F4</h2>
         <div class="visit-details">
           <p class="visit-kicker">F4 · 四楼坐电梯 Elevator to the 4th floor</p>
