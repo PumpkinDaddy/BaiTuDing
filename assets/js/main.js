@@ -327,7 +327,7 @@ const renderBilingualText = (zh, en) => `
 
 const renderIngredients = (ingredients = []) => ingredients
   .map((ingredient) => `
-    <li>
+    <li class="ingredient-item">
       <span class="zh">${escapeHTML(ingredient.zh || ingredient)}</span>
       ${ingredient.en ? `<span class="en">${escapeHTML(ingredient.en)}</span>` : ""}
     </li>
@@ -372,6 +372,9 @@ class FlipBookMenu {
 
   renderShell() {
     const totalPages = this.paddedItemPages;
+    const bookletWindowClass = this.type === "drinks"
+      ? "drink-booklet-window"
+      : "coffee-booklet-window";
 
     this.root.innerHTML = `
       <div class="flipbook-component flipbook-${escapeHTML(this.type)}" data-flipbook-component>
@@ -391,7 +394,7 @@ class FlipBookMenu {
                 </button>
               </div>
             </div>
-            <div class="flipbook-book" data-flipbook-book tabindex="0" role="group" aria-label="${escapeHTML(this.titleZh)} / ${escapeHTML(this.titleEn)} 翻页册 / booklet, ${totalPages} 页 / menu pages">
+            <div class="flipbook-book cd-booklet-window menu-booklet-window ${bookletWindowClass}" data-flipbook-book tabindex="0" role="group" aria-label="${escapeHTML(this.titleZh)} / ${escapeHTML(this.titleEn)} 翻页册 / booklet, ${totalPages} 页 / menu pages">
               <div class="flipbook-spine" aria-hidden="true"></div>
               <div class="flipbook-pages" data-flipbook-pages></div>
               <button class="flipbook-edge-nav flipbook-edge-prev" type="button" data-flip-action="prev" aria-label="上一页 / Previous page">
@@ -653,6 +656,8 @@ class FlipBookMenu {
     this.component.classList.toggle("is-closed", this.currentPage < 0);
     this.component.classList.toggle("is-toc", this.currentPage === 0);
     this.component.classList.toggle("is-item-page", this.currentPage > 0);
+    this.root.classList.toggle("is-open", this.currentPage >= 0);
+    document.body.classList.toggle("has-open-flipbook", Boolean(document.querySelector(".menu-booklet.is-open")));
     this.book.classList.toggle("is-closed", this.currentPage < 0);
     this.book.classList.toggle("is-cover", this.currentPage === 0);
     this.book.classList.toggle("is-item-page", this.currentPage > 0);
@@ -668,7 +673,7 @@ class FlipBookMenu {
       button.disabled = this.currentPage <= 0 || this.isAnimating;
     });
     this.closeButtons.forEach((button) => {
-      button.disabled = this.currentPage !== 0 || this.isAnimating;
+      button.disabled = this.currentPage < 0 || this.isAnimating;
     });
   }
 
@@ -781,17 +786,19 @@ class FlipBookMenu {
 
     return `
       <section class="flipbook-page ${positionClass} flipbook-menu-item-page" aria-label="${escapeHTML(getItemName(item))} 详情 / details">
-        <p class="booklet-label">酒水第 ${padPageNumber(pageNumber)} 页 / Drinks Page ${padPageNumber(pageNumber)}</p>
-        <figure class="menu-page-photo">
-          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(getItemName(item))} 照片 / photo">
-        </figure>
-        <div class="menu-page-copy">
-          <div class="menu-page-title-row">
-            <h4>${renderBilingualName(item)}</h4>
-            <p class="flipbook-price"><span>价格 / Price</span><strong>¥${escapeHTML(item.price)}</strong></p>
+        <div class="drink-page-header">
+          <div class="drink-page-title-stack">
+            <h2 class="drink-title-cn">${escapeHTML(item.nameZh)}</h2>
+            ${item.nameEn ? `<div class="drink-title-en">${escapeHTML(item.nameEn)}</div>` : ""}
           </div>
+          <p class="flipbook-price price-badge"><span>价格 / Price</span><strong class="price-value">¥${escapeHTML(item.price)}</strong></p>
+        </div>
+        <figure class="menu-page-photo drink-photo">
+          <img class="drink-photo-image" src="${escapeHTML(item.image)}" alt="${escapeHTML(getItemName(item))} 照片 / photo">
+        </figure>
+        <div class="menu-page-copy drink-page-content">
           <p class="menu-page-section-label">配料 / Ingredients</p>
-          <ul class="menu-page-ingredients" aria-label="配料 / Ingredients">
+          <ul class="menu-page-ingredients ingredients-list" aria-label="配料 / Ingredients">
             ${renderIngredients(item.ingredients)}
           </ul>
           ${item.descriptionZh ? `<p class="flipbook-description">${renderBilingualText(item.descriptionZh, item.descriptionEn)}</p>` : ""}
@@ -804,7 +811,7 @@ class FlipBookMenu {
   renderClosingPage(pageNumber, positionClass) {
     return `
       <section class="flipbook-page ${positionClass} flipbook-closing-page" aria-label="内页结束 / End of booklet">
-        <p class="booklet-label">酒水第 ${padPageNumber(pageNumber)} 页 / Drinks Page ${padPageNumber(pageNumber)}</p>
+        <p class="booklet-label">${escapeHTML(this.titleZh)}第 ${padPageNumber(pageNumber)} 页 / ${escapeHTML(this.titleEn)} Page ${padPageNumber(pageNumber)}</p>
         <div>
           <h4>${renderBilingualText("内页结束", "End of Booklet")}</h4>
           <img class="booklet-brand-logo" src="assets/images/big-logo-dark-premium.png" width="1672" height="941" alt="白兔町 BACKTO INN logo">
