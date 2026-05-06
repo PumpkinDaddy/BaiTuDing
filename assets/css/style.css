@@ -34,6 +34,7 @@ body {
 img {
   display: block;
   max-width: 100%;
+  image-rendering: auto;
 }
 
 a {
@@ -58,17 +59,54 @@ a {
   backdrop-filter: blur(4px);
 }
 
-.brand {
+.brand,
+.site-logo,
+.brand-logo {
   position: relative;
-  width: clamp(246px, 20vw, 320px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: min(44vw, 220px);
+  padding: 6px 0;
   flex: 0 0 auto;
+  background: transparent;
+  isolation: isolate;
 }
 
-.brand img {
-  width: 100%;
-  height: auto;
-  opacity: 0.95;
-  filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.42));
+.site-logo::before,
+.brand-logo::before {
+  content: "";
+  position: absolute;
+  inset: -16px -24px;
+  z-index: -1;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(199, 154, 70, 0.14), rgba(199, 154, 70, 0.04) 42%, transparent 70%);
+  opacity: 0.86;
+  pointer-events: none;
+}
+
+.brand img,
+.site-logo img,
+.brand-logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(40px, 7vw, 72px);
+  opacity: 0.98;
+  filter:
+    drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 10px rgba(202, 157, 74, 0.22));
+  image-rendering: auto;
+  object-fit: contain;
+}
+
+.footer-logo img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(32px, 5vw, 56px);
+  image-rendering: auto;
   object-fit: contain;
 }
 
@@ -354,8 +392,8 @@ h3 {
 .record-sleeve {
   appearance: none;
   position: relative;
-  min-height: clamp(360px, 42vw, 470px);
-  width: 100%;
+  width: min(92%, 540px);
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: end;
   padding: clamp(18px, 3vw, 28px);
@@ -366,6 +404,7 @@ h3 {
   font: inherit;
   text-align: left;
   isolation: isolate;
+  overflow: visible;
   transform: rotate(0deg);
   outline: none;
   transform-style: preserve-3d;
@@ -374,11 +413,12 @@ h3 {
 
 .record-sleeve img {
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0;
   z-index: 2;
-  width: 78%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   border-radius: 8px;
   box-shadow: var(--shadow-cinematic);
 }
@@ -386,9 +426,8 @@ h3 {
 .record-sleeve::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0;
   z-index: 3;
-  width: 78%;
   border-radius: 8px;
   background:
     linear-gradient(180deg, rgba(18, 15, 18, 0.08), rgba(18, 15, 18, 0.72)),
@@ -400,19 +439,19 @@ h3 {
 .event-record {
   position: absolute;
   top: 50%;
-  right: 2%;
+  right: -8%;
   z-index: 1;
-  width: 56%;
+  width: 78%;
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle, var(--gold) 0 7%, var(--rust) 7% 15%, transparent 15%),
-    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.16) 0 1px, transparent 1px 8px),
-    conic-gradient(from 22deg, #060505, #342d29 12%, #070606 27%, #51463d 43%, #080706 61%, #2c2521 78%, #060505);
+    radial-gradient(circle, var(--gold) 0 6%, var(--rust) 6.4% 12%, transparent 12.4%),
+    repeating-radial-gradient(circle, rgba(255, 250, 240, 0.12) 0 1px, transparent 1px 7px),
+    conic-gradient(from 22deg, #060505, #25201e 13%, #070606 28%, #3b342f 43%, #080706 61%, #211c19 78%, #060505);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 240, 0.16),
-    inset 0 0 34px rgba(0, 0, 0, 0.62),
-    0 24px 60px rgba(0, 0, 0, 0.34);
+    inset 0 0 0 1px rgba(255, 250, 240, 0.12),
+    inset 0 0 30px rgba(0, 0, 0, 0.68),
+    0 16px 34px rgba(0, 0, 0, 0.24);
   transform: translateY(-50%) translateX(0) rotate(7deg);
   transition: transform 360ms ease, box-shadow 360ms ease;
 }
@@ -480,17 +519,17 @@ h3 {
 .vinyl-card:active .record-sleeve,
 .record-sleeve:focus-visible {
   filter: drop-shadow(0 0 22px rgba(217, 155, 52, 0.28));
-  transform: rotateX(3deg) rotateY(-4deg) rotateZ(-1.4deg) translateY(-6px);
+  transform: translateY(-6px) rotateZ(-1deg);
 }
 
 .vinyl-card:hover .event-record,
 .vinyl-card:active .event-record,
 .record-sleeve:focus-visible .event-record {
-  transform: translateY(-50%) translateX(18px) rotate(18deg);
+  transform: translateY(-50%) translateX(6px) rotate(12deg);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 250, 240, 0.16),
-    inset 0 0 34px rgba(0, 0, 0, 0.62),
-    0 30px 72px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 250, 240, 0.14),
+    inset 0 0 30px rgba(0, 0, 0, 0.68),
+    0 20px 42px rgba(0, 0, 0, 0.32),
     var(--glow-gold);
 }
 
@@ -1925,7 +1964,7 @@ h3 {
 }
 
 .album-tracklist::after {
-  content: "白兔町 BACKTO INN";
+  content: "";
   position: absolute;
   left: var(--record-x);
   top: var(--record-y);
@@ -1934,10 +1973,10 @@ h3 {
   place-items: center;
   width: clamp(78px, 11vw, 118px);
   aspect-ratio: 1;
-  padding: 12px;
-  color: rgba(18, 15, 18, 0.72);
+  padding: 10px;
   border-radius: 50%;
   background:
+    url("../images/big-logo-dark-premium.png") center / 76% auto no-repeat,
     radial-gradient(circle at 34% 28%, rgba(255, 250, 240, 0.7) 0 12%, transparent 13%),
     linear-gradient(145deg, rgba(217, 155, 52, 0.88), rgba(155, 63, 45, 0.76));
   box-shadow:
@@ -3386,6 +3425,19 @@ h3 {
   font-weight: 950;
 }
 
+.booklet-brand-logo {
+  justify-self: center;
+  display: block;
+  width: auto;
+  max-width: min(62%, 180px);
+  height: clamp(34px, 5vw, 56px);
+  image-rendering: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 8px 18px rgba(52, 36, 25, 0.16))
+    drop-shadow(0 0 8px rgba(202, 157, 74, 0.14));
+}
+
 .flipbook-closing-button {
   appearance: none;
   justify-self: center;
@@ -4058,7 +4110,22 @@ h3 {
   }
 
   .brand {
-    width: clamp(144px, 48vw, 230px);
+    max-width: min(38vw, 160px);
+  }
+
+  .brand img,
+  .site-logo img,
+  .brand-logo img {
+    height: 42px;
+    filter:
+      drop-shadow(0 1px 5px rgba(0, 0, 0, 0.5))
+      drop-shadow(0 0 6px rgba(202, 157, 74, 0.16));
+  }
+
+  .site-logo::before,
+  .brand-logo::before {
+    inset: -10px -14px;
+    opacity: 0.64;
   }
 
   .nav-toggle {
@@ -4614,7 +4681,8 @@ h3 {
   }
 
   .record-sleeve {
-    min-height: 380px;
+    width: min(92%, 560px);
+    aspect-ratio: 1 / 1;
   }
 
   .event-modal-panel {
@@ -4644,7 +4712,22 @@ h3 {
   }
 
   .brand {
-    width: clamp(246px, 20vw, 320px);
+    max-width: min(44vw, 220px);
+  }
+
+  .brand img,
+  .site-logo img,
+  .brand-logo img {
+    height: clamp(40px, 7vw, 72px);
+    filter:
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45))
+      drop-shadow(0 0 10px rgba(202, 157, 74, 0.22));
+  }
+
+  .site-logo::before,
+  .brand-logo::before {
+    inset: -16px -24px;
+    opacity: 0.86;
   }
 
   .nav-toggle {
@@ -4722,7 +4805,7 @@ h3 {
   }
 
   .brand {
-    width: clamp(144px, 48vw, 216px);
+    max-width: min(36vw, 150px);
   }
 
   .hero-actions,
@@ -4903,14 +4986,15 @@ h3 {
     padding: 16px;
   }
 
-  .record-sleeve img,
-  .record-sleeve::before {
-    width: 84%;
+  .record-sleeve {
+    width: 91%;
+    max-width: 100%;
+    padding: 16px;
   }
 
   .event-record {
-    right: 0;
-    width: 58%;
+    right: -6%;
+    width: 72%;
   }
 
   .boombox-promo {

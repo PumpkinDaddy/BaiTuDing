@@ -807,7 +807,7 @@ class FlipBookMenu {
         <p class="booklet-label">酒水第 ${padPageNumber(pageNumber)} 页 / Drinks Page ${padPageNumber(pageNumber)}</p>
         <div>
           <h4>${renderBilingualText("内页结束", "End of Booklet")}</h4>
-          <p>白兔町 BACKTO INN</p>
+          <img class="booklet-brand-logo" src="assets/images/big-logo-dark-premium.png" width="1672" height="941" alt="白兔町 BACKTO INN logo">
           <button class="flipbook-closing-button" type="button" data-flip-action="contents" aria-label="返回目录 / Back to Contents">
             返回目录 / Back to Contents
           </button>
